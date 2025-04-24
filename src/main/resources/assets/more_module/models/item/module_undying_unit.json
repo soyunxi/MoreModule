@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "more_module:item/module_undying_unit"
+  }
+}
