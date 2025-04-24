@@ -1,5 +1,6 @@
 package org.yunxi.more_module.common.event;
 
+import com.brandon3055.draconicevolution.init.DEDamage;
 import mekanism.api.MekanismAPI;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.gear.ICustomModule;
@@ -60,9 +61,13 @@ public class ModEvent {
                 if (ModuleHelper.get().isEnabled(stack, MoreModuleModules.CHAOS_RESISTANCE_UNIT)) damage -= 0.25f;
             }
 
-            if (damage <= 0) {
-                event.setCanceled(true);
-            } else event.setAmount(event.getAmount() * damage);
+            if (event.getSource().is(DEDamage.CHAOS_IMPLOSION) || event.getSource().is(DEDamage.CHAOTIC_ARROW) || event.getSource().is(DEDamage.CHAOTIC_ARROW_SPOOF) || event.getSource().is(DEDamage.GUARDIAN)){
+                if (damage <= 0) {
+                    event.setCanceled(true);
+                } else event.setAmount(event.getAmount() * damage);
+            }
+
+
         }
     }
 }
